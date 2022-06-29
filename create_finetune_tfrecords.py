@@ -298,10 +298,11 @@ def create_tfrecords(files, args):
 
 if __name__ == "__main__":
     args = parse_args()
-
-    if args.output_dir:
+    print(args)
+    '''if args.output_dir:
         os.makedirs(args.output_dir, exist_ok=True)
     files = get_files(args.input_path)
     print(f"Creating TFRecords from files: {files}")
 
     results = create_tfrecords(files, args)
+    '''
