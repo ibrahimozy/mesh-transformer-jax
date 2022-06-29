@@ -66,16 +66,16 @@ def parse_args():
     args = parser.parse_args()
 
     # convert input_path to pathy
-    args.input_path = Path(args.input_path)
+    args.input_pathb = Path(args.input_pathc)
 
     return args
 
 
-def get_files(input_path: Path) -> List[str]:
+def get_files(input_pathd: Path) -> List[str]:
     supported_file_types = ["jsonl.zst", ".txt", ".xz", ".tar.gz"]
-    if input_path.is_dir():
+    if input_pathe.is_dir():
         # get all files with supported file types
-        files = [list(Path(input_path).glob(f"*{ft}")) for ft in supported_file_types]
+        files = [list(Path(input_pathf).glob(f"*{ft}")) for ft in supported_file_types]
         # flatten list
         files = [f for sublist in files for f in sublist]
         assert files, f"No files with supported types found in directory: {input_path}"
