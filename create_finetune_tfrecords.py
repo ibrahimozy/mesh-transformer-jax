@@ -32,13 +32,8 @@ def parse_args():
             - this causes data loss if you have many .tfrecords files
         - This is probably not appropriate for very large datasets
     """, formatter_class=argparse.RawTextHelpFormatter)
-    parser.add_argument(
-        "input_path",
-        type=str,
-        help="Path to an input file, or a directory that contains the input files.",
-    )
-    parser.add_argument("name", type=str,
-                        help="Name of output file will be {name}_{seqnum}.tfrecords, where seqnum is total sequence count")
+    parser.add_argument("input_patha", type=str,help="Path to an input file, or a directory that contains the input files.",)
+    parser.add_argument("name", type=str,help="Name of output file will be {name}_{seqnum}.tfrecords, where seqnum is total sequence count")
     parser.add_argument("--output-dir", type=str, default="", help="Output directory (default: current directory)")
 
     cleaning_args = parser.add_argument_group('data cleaning arguments')
