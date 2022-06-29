@@ -297,7 +297,7 @@ def create_tfrecords(files, args):
 
 
 if __name__ == "__main__":
-    args = parse_args()
+    #args = parse_args()
     print(args)
     '''if args.output_dir:
         os.makedirs(args.output_dir, exist_ok=True)
