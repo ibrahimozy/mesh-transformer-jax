@@ -3,7 +3,7 @@ import os
 import re
 import random
 
-'''from pathlib import Path
+from pathlib import Path
 from typing import List
 
 import ftfy
@@ -11,7 +11,7 @@ import tensorflow as tf
 from lm_dataformat import Reader
 from transformers import GPT2TokenizerFast
 from tqdm import tqdm
-'''
+
 
 def parse_args():
     parser = argparse.ArgumentParser(description="""
@@ -32,8 +32,13 @@ def parse_args():
             - this causes data loss if you have many .tfrecords files
         - This is probably not appropriate for very large datasets
     """, formatter_class=argparse.RawTextHelpFormatter)
-    parser.add_argument("input_patha", type=str,help="Path to an input file, or a directory that contains the input files.",)
-    parser.add_argument("name", type=str,help="Name of output file will be {name}_{seqnum}.tfrecords, where seqnum is total sequence count")
+    parser.add_argument(
+        "input_path",
+        type=str,
+        help="Path to an input file, or a directory that contains the input files.",
+    )
+    parser.add_argument("name", type=str,
+                        help="Name of output file will be {name}_{seqnum}.tfrecords, where seqnum is total sequence count")
     parser.add_argument("--output-dir", type=str, default="", help="Output directory (default: current directory)")
 
     cleaning_args = parser.add_argument_group('data cleaning arguments')
@@ -66,25 +71,26 @@ def parse_args():
     args = parser.parse_args()
 
     # convert input_path to pathy
-    args.input_pathb = Path(args.input_pathc)
+    args.input_path = Path(args.input_path)
 
     return args
 
 
-def get_files(input_pathd: Path) -> List[str]:
+def get_files(input_path: Path) -> List[str]:
     supported_file_types = ["jsonl.zst", ".txt", ".xz", ".tar.gz"]
-    if input_pathe.is_dir():
+    if input_path.is_dir():
         # get all files with supported file types
-        files = [list(Path(input_pathf).glob(f"*{ft}")) for ft in supported_file_types]
+        files = [list(Path(input_path).glob(f"*{ft}")) for ft in supported_file_types]
         # flatten list
         files = [f for sublist in files for f in sublist]
+        assert files, f"No files with supported types found in directory: {input_path}"
     elif input_path.is_file():
         assert any(
             str(input_path).endswith(f_type) for f_type in supported_file_types
         ), f"Input file type must be one of: {supported_file_types}"
         files = [input_path]
     else:
-        raise FileNotFoundError(f"No such file or directory: ")
+        raise FileNotFoundError(f"No such file or directory: {input_path}")
 
     return [str(f) for f in files]
 
@@ -291,12 +297,11 @@ def create_tfrecords(files, args):
 
 
 if __name__ == "__main__":
-    #args = parse_args()
-    print(args)
-    '''if args.output_dir:
+    args = parse_args()
+
+    if args.output_dir:
         os.makedirs(args.output_dir, exist_ok=True)
     files = get_files(args.input_path)
     print(f"Creating TFRecords from files: {files}")
 
     results = create_tfrecords(files, args)
-    '''
