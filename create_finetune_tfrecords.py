@@ -1,9 +1,9 @@
-#import argparse
+import argparse
 import os
 import re
 import random
 
-from pathlib import Path
+'''from pathlib import Path
 from typing import List
 
 import ftfy
@@ -11,7 +11,7 @@ import tensorflow as tf
 from lm_dataformat import Reader
 from transformers import GPT2TokenizerFast
 from tqdm import tqdm
-
+'''
 
 def parse_args():
     parser = argparse.ArgumentParser(description="""
