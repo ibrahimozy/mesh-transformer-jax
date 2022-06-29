@@ -78,14 +78,13 @@ def get_files(input_pathd: Path) -> List[str]:
         files = [list(Path(input_pathf).glob(f"*{ft}")) for ft in supported_file_types]
         # flatten list
         files = [f for sublist in files for f in sublist]
-        assert files, f"No files with supported types found in directory: {input_path}"
     elif input_path.is_file():
         assert any(
             str(input_path).endswith(f_type) for f_type in supported_file_types
         ), f"Input file type must be one of: {supported_file_types}"
         files = [input_path]
     else:
-        raise FileNotFoundError(f"No such file or directory: {input_path=}")
+        raise FileNotFoundError(f"No such file or directory: ")
 
     return [str(f) for f in files]
 
