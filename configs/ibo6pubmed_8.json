@@ -10,14 +10,14 @@
   "seq": 2048,
   "cores_per_replica": 8,
   "per_replica_batch": 1,
-  "gradient_accumulation_steps": 32,
+  "gradient_accumulation_steps": 16,
 
-  "warmup_steps": 14,
-  "anneal_steps": 130,
+  "warmup_steps": 30750,
+  "anneal_steps": 584250,
   "lr": 5e-5,
   "end_lr": 1e-5,
   "weight_decay": 0.1,
-  "total_steps": 144,
+  "total_steps": 615000,
 
   "tpu_size": 8,
 
@@ -25,9 +25,13 @@
   "model_dir": "GPT3_6B_pubmed",
 
   "train_set": "ibo6pubmed.train.index",
+  "val_set": {},
 
-  "val_batches": 3207,
-  "val_every": 250,
+  "eval_harness_tasks": [],
+
+  
+  "val_batches": 9840131,
+  "val_every": 650000,
   "ckpt_every": 500,
   "keep_every": 10000,
 
