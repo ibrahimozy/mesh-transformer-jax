@@ -1,1 +1,3 @@
-gs://gptj6bibo/mydata_tfrecords/gptj6bibo_tokenized_3207.tfrecords 
+gs://gptj6bibo/mydata_tfrecords/gptj6bibo_tokenized_3207.tfrecords
+gs://gptj6bibo/mydata_tfrecords/pub1_tokenized_6045447.tfrecords
+gs://gptj6bibo/mydata_tfrecords/pub2_tokenized_3791367.tfrecords
